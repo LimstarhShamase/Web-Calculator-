@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+    }
+
+    h2 {
+      color: #ff8f00;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+
+    input[type="text"] {
+      grid-column: span 2;
+      padding: 10px;
+      font-size: 18px;
+      text-align: right;
+      background-color: #333;
+      color: #ff8f00;
+      border: none;
+      outline: none;
+    }
+
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .operators {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    input[type="button"] {
+      padding: 20px;
+      font-size: 18px;
+      border: 1px solid #ff8f00;
+      background-color: #ff8f00;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="button"]:hover {
+      background-color: #ffbb33;
+    }
+
+    input.operator {
+      background-color: #ff8f00;
+      color: #fff;
+    }
+
+    input.operator:hover {
+      background-color: #ffbb33;
+    }
+
+    input.equals {
+      grid-column: span 2;
+      background-color: #ff8f00;
+      color: #fff;
+    }
+
+    input.equals:hover {
+      background-color: #ffbb33;
+    }
+
+    input.clear, input.erase {
+      background-color: #e57373;
+      color: #fff;
+    }
+
+    input.clear:hover, input.erase:hover {
+      background-color: #ef5350;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Web Calculator</h2>
+
+  <form name="calculator">
+    <input type="text" name="display" id="display" readonly>
+    <div class="numbers">
+      <input type="button" value="7" onclick="addToDisplay('7')">
+      <input type="button" value="8" onclick="addToDisplay('8')">
+      <input type="button" value="9" onclick="addToDisplay('9')">
+      <input type="button" value="4" onclick="addToDisplay('4')">
+      <input type="button" value="5" onclick="addToDisplay('5')">
+      <input type="button" value="6" onclick="addToDisplay('6')">
+      <input type="button" value="1" onclick="addToDisplay('1')">
+      <input type="button" value="2" onclick="addToDisplay('2')">
+      <input type="button" value="3" onclick="addToDisplay('3')">
+      <input type="button" value="0" onclick="addToDisplay('0')">
+      <input type="button" value="." onclick="addToDisplay('.')">
+    </div>
+    <div class="operators">
+      <input type="button" class="operator" value="/" onclick="addToDisplay('/')">
+      <input type="button" class="operator" value="-" onclick="addToDisplay('-')">
+      <input type="button" class="operator" value="+" onclick="addToDisplay('+')">
+      <input type="button" class="operator" value="*" onclick="addToDisplay('*')">
+      <input type="button" class="operator" value="%" onclick="addToDisplay('%')">
+      <input type="button" class="clear" value="C" onclick="clearDisplay()">
+      <input type="button" class="erase" value="⌫" onclick="eraseLast()">
+      <input type="button" class="equals" value="=" onclick="calculate()">
+    </div>
+  </form>
+
+  <script>
+    let result = 0;
+
+    function addToDisplay(value) {
+      document.calculator.display.value += value;
+    }
+
+    function eraseLast() {
+      const currentDisplay = document.calculator.display.value;
+      document.calculator.display.value = currentDisplay.slice(0, -1);
+    }
+
+    function clearDisplay() {
+      document.calculator.display.value = '';
+      result = 0;
+    }
+
+    function calculate() {
+      try {
+        result = eval(document.calculator.display.value);
+        document.calculator.display.value = `${result}`;
+      } catch (error) {
+        document.calculator.display.value = 'Error';
+      }
+    }
+  </script>
+
+</body>
+</html>
+<body>
+
+</body>
+
+  </html>
